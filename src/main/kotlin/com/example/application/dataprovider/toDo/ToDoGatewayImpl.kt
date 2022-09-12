@@ -28,5 +28,10 @@ class ToDoGatewayImpl(
     }
 
     override fun find(toDoId: Long?) {
+        try {
+            toDoRepository.findById(toDoId)
+        }catch (ex: Exception){
+            throw ToDoException(ex.cause)
+        }
     }
 }
