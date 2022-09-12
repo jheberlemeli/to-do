@@ -1,0 +1,24 @@
+micronaut:
+  application:
+    name: demo
+datasources:
+  default:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    db-type: mysql
+    schema-generate: CREATE_DROP
+    dialect: ${JDBC_DIALECT:MYSQL}
+    url: jdbc:mysql://localhost:3306/toDo_kotlin?createDatabaseIfNotExist=true
+    username: root
+    defer-datasource-initialization: true
+netty:
+  default:
+    allocator:
+      max-order: 3
+jpa:
+  default:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        hbm2ddl:
+          auto: create-drop
+        show_sql: true
