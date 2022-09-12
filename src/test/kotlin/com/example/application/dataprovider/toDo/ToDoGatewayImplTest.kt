@@ -6,18 +6,18 @@ import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
-import io.mockk.runs
+import io.mockk.mockk
 import io.mockk.verify
 import jakarta.inject.Inject
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 @MicronautTest
 class ToDoGatewayImplTest{
-    @Inject lateinit var target: ToDoGatewayImpl
+    @Inject
+    lateinit var target: ToDoGatewayImpl
 
     @get:MockBean(ToDoRepository::class)
-    lateinit var toDoRepository: ToDoRepository
+    val toDoRepository = mockk<ToDoRepository>()
 
     @Test
     fun `given toDo should save it`(){

@@ -30,6 +30,7 @@ dependencies {
     runtimeOnly("mysql:mysql-connector-java:8.0.30")
     implementation("io.micronaut:micronaut-validation")
     testImplementation "io.mockk:mockk:1.12.7"
+    kapt("org.mapstruct:mapstruct-processor:1.5.2.Final")
     implementation('org.mapstruct:mapstruct:1.5.2.Final')
     annotationProcessor ('org.mapstruct:mapstruct-processor:1.5.2.Final')
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
