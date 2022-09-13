@@ -4,6 +4,7 @@ import com.example.application.dataprovider.toDo.repository.ToDoDBProducer
 import com.example.application.dataprovider.toDo.repository.ToDoRepository
 import com.example.domain.toDo.entity.ToDoProducer
 import io.micronaut.core.io.ResourceLoader
+import io.micronaut.http.HttpStatus
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import io.mockk.every
@@ -27,7 +28,9 @@ class ToDoGatewayImplTest{
     @Test
     fun `given toDo should save it`(){
         every { toDoRepository.save(any()) } returns ToDoProducer().buildApplication()
-        target.save(ToDoProducer().build())
+        target.save(ToDoDBProducer(
+            resourceLoader = resourceLoader
+        ).build())
 
         verify { toDoRepository.save(any()) }
     }
@@ -46,6 +49,23 @@ class ToDoGatewayImplTest{
         target.find(toDoId)
 
         verify { toDoRepository.findById(eq(toDoId)) }
+    }
+
+    @Test
+    fun `given toDo should delete it`(){
+        val toDo = ToDoProducer().build()
+
+        val toDoDBProducer = ToDoDBProducer(
+            resourceLoader = resourceLoader
+        ).build()
+
+        val toDoId = toDo.id
+
+        every { toDoRepository.deleteById(any()) }
+        target.delete(toDoId)
+
+        verify { toDoRepository.deleteById(eq(toDoId)) }
+        verify { toDoRepository.deleteById(toDoId).equals(HttpStatus.OK).toString() }
     }
 
 

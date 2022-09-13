@@ -1,14 +1,15 @@
 package com.example.domain.toDo
 
-import com.example.domain.toDo.entity.ToDo
+import com.example.application.dataprovider.toDo.repository.entity.ToDo
+
 
 interface ToDoGateway {
 
-    fun save(toDo: ToDo)
+    fun save(toDo: ToDo): ToDo
 
     fun delete(toDoId: Long)
 
-    fun update(toDo: ToDo)
+    fun updatePartial(toDoId: Long, changes: Map<String, String>): ToDo
 
-    fun find(toDoId: Long?)
+    fun find(toDoId: Long): ToDo
 }

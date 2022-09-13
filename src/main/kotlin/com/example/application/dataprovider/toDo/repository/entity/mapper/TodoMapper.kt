@@ -8,4 +8,6 @@ import org.mapstruct.Mapper
 interface TodoMapper {
 
     fun toApplication(toDo: ToDo): ToDoApplication
+
+    fun toDomain(toDo: ToDoApplication): ToDo
 }

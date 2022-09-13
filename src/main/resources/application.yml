@@ -5,12 +5,11 @@ datasources:
   default:
     driverClassName: com.mysql.cj.jdbc.Driver
     db-type: mysql
-    schema-generate: CREATE_DROP
+    schema-generate: UPDATE
     dialect: ${JDBC_DIALECT:MYSQL}
     url: jdbc:mysql://localhost:3306/toDo_kotlin?createDatabaseIfNotExist=true
     username: user
     password: password
-    defer-datasource-initialization: true
 netty:
   default:
     allocator:
@@ -21,5 +20,5 @@ jpa:
       hibernate:
         globally_quoted_identifiers: true
         hbm2ddl:
-          auto: create-drop
+          auto: update
         show_sql: true
