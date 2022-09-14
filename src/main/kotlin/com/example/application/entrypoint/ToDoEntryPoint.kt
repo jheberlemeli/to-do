@@ -1,7 +1,7 @@
 package com.example.application.entrypoint
 
-import com.example.application.dataprovider.toDo.repository.entity.ToDo
 import com.example.domain.toDo.ToDoGateway
+import com.example.domain.toDo.entity.ToDo
 import io.micronaut.http.annotation.*
 
 @Controller("/toDo")
@@ -24,9 +24,9 @@ class ToDoEntryPoint(
         toDoGateway.delete(toDoId)
     }
 
-    @Patch("/{toDoId}")
-    fun updatePartial(toDoId: Long, changes: Map<String, String>): ToDo{
-        return toDoGateway.updatePartial(toDoId, changes)
+    @Patch
+    fun updatePartial(toDo: ToDo, changes: Map<String, String>): ToDo{
+        return toDoGateway.updatePartial(toDo, changes)
     }
 
 }

@@ -1,6 +1,6 @@
 package com.example.domain.toDo
 
-import com.example.application.dataprovider.toDo.repository.entity.ToDo
+import com.example.domain.toDo.entity.ToDo
 
 
 interface ToDoGateway {
@@ -9,7 +9,7 @@ interface ToDoGateway {
 
     fun delete(toDoId: Long)
 
-    fun updatePartial(toDoId: Long, changes: Map<String, String>): ToDo
+    fun updatePartial(toDo: ToDo, changes: Map<String, String>): ToDo
 
     fun find(toDoId: Long): ToDo
 }
