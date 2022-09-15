@@ -32,22 +32,13 @@ class ToDoGatewayImpl(
         }
     }
 
-    override fun updatePartial(toDo: ToDo, changes: Map<String, String>): ToDo {
+    override fun updatePartial(toDo: ToDo, changes: Map<String, String>): ToDo =
         try {
-            val toDoIdEntity = find(toDo.id)
-
-            changes.forEach { atributo, valor ->
-                when (atributo) {
-                    "title" ->  toDoIdEntity.title = valor
-                    "desc" -> toDoIdEntity.desc = valor
-                }
-            }
-            return save(toDoIdEntity)
+            toDoMapper.toDomain(toDoRepository.update(toDoMapper.toApplication(toDo)))
         }catch (ex: Exception){
             throw ToDoException(ex.cause)
         }
 
-    }
 
     override fun find(toDoId: Long): ToDo {
         val toDo = toDoRepository.findById(toDoId).orElseThrow { ClassNotFoundException("toDo nao encontrado") }

@@ -24,7 +24,7 @@ class ToDoEntryPoint(
         toDoGateway.delete(toDoId)
     }
 
-    @Patch
+    @Put
     fun updatePartial(toDo: ToDo, changes: Map<String, String>): ToDo{
         return toDoGateway.updatePartial(toDo, changes)
     }
